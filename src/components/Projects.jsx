@@ -1,0 +1,79 @@
+import { motion } from 'framer-motion'
+import { FaExternalLinkAlt, FaGithub } from './icons'
+import { projects } from '../data/content'
+import { Reveal } from './Reveal'
+
+function ProjectCard({ project, index }) {
+  return (
+    <motion.article
+      initial={{ opacity: 0, y: 32 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.6, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
+      className="group relative overflow-hidden rounded-3xl border border-red-900/35 bg-burgundy-900/35 p-6 shadow-cinematic backdrop-blur-xl transition duration-500 hover:-translate-y-2 hover:border-red-500/50 hover:shadow-glow"
+    >
+      <div className="absolute inset-0 bg-gradient-to-br from-red-900/20 via-transparent to-black/50 opacity-0 transition duration-500 group-hover:opacity-100" />
+      <div className="relative mb-5 h-40 overflow-hidden rounded-2xl border border-red-800/30 bg-gradient-to-br from-red-950 via-burgundy-900 to-black transition duration-500 group-hover:scale-[1.02]">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(248,113,113,0.25),transparent_55%)]" />
+        <p className="absolute bottom-4 left-4 font-display text-2xl uppercase tracking-wider text-cream-50/20">
+          Case Study
+        </p>
+      </div>
+
+      <p className="text-xs uppercase tracking-[0.25em] text-red-300/80">{project.category}</p>
+      <h3 className="mt-2 font-serif text-2xl font-bold text-cream-50">{project.title}</h3>
+      <p className="mt-3 text-sm leading-relaxed text-cream-100/70">{project.description}</p>
+
+      <div className="mt-4 flex flex-wrap gap-2">
+        {project.stack.map((tech) => (
+          <span
+            key={tech}
+            className="rounded-full border border-red-800/50 bg-black/40 px-3 py-1 text-xs text-cream-100/80"
+          >
+            {tech}
+          </span>
+        ))}
+      </div>
+
+      <div className="relative mt-6 flex gap-3">
+        <a
+          href={project.demo}
+          className="inline-flex items-center gap-2 rounded-full bg-red-800/60 px-4 py-2 text-xs font-semibold text-cream-50 transition hover:bg-red-700"
+        >
+          Live Demo <FaExternalLinkAlt size={14} />
+        </a>
+        <a
+          href={project.github}
+          className="inline-flex items-center gap-2 rounded-full border border-red-700/50 px-4 py-2 text-xs font-semibold text-cream-50 transition hover:border-red-400"
+        >
+          Github <FaGithub size={14} />
+        </a>
+      </div>
+    </motion.article>
+  )
+}
+
+export function Projects() {
+  return (
+    <section id="projects" className="relative snap-start px-5 py-24 md:px-8 md:py-32">
+      <div className="mx-auto max-w-7xl">
+        <Reveal>
+          <p className="font-sans text-xs uppercase tracking-[0.35em] text-red-400/90">My Work</p>
+          <h2 className="mt-3 font-display text-4xl font-bold uppercase tracking-wide text-cream-50 md:text-5xl">
+            Recent Projects
+          </h2>
+          <p className="mt-4 max-w-2xl font-sans text-cream-100/70">
+            Showcase project premium dengan pendekatan desain modern, interaktif, dan fokus pada
+            pengalaman pengguna.
+          </p>
+        </Reveal>
+
+        <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {projects.map((project, index) => (
+            <ProjectCard key={project.title} project={project} index={index} />
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
