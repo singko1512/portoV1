@@ -142,7 +142,7 @@ export const certificates = [
 ]
 
 export const contactInfo = {
-  email: 'dapahiben@gmail.com',
+  email: 'hibbandaffa107@gmail.com',
   whatsappUrl: 'https://wa.me/6283875109156',
   whatsappDisplay: '083875109156',
   linkedinUrl: 'https://www.linkedin.com/in/m-fadli-ramadhan-0a37032a1/',

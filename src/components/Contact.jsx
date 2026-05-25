@@ -39,10 +39,16 @@ export function Contact() {
     setLoading(true)
 
     const subject = encodeURIComponent(
-      formData.name ? `Portfolio Contact — ${formData.name}` : 'Portfolio Contact',
+      formData.name ? `Portfolio — Pesan dari ${formData.name}` : 'Portfolio — Pesan baru',
     )
     const body = encodeURIComponent(
-      `Nama: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`,
+      [
+        `Halo, saya ${formData.name || '(belum mengisi nama)'}.`,
+        `Email saya: ${formData.email}`,
+        '',
+        '--- Pesan ---',
+        formData.message,
+      ].join('\n'),
     )
     const mailto = `mailto:${contactInfo.email}?subject=${subject}&body=${body}`
 
@@ -67,8 +73,9 @@ export function Contact() {
             Let&apos;s Work Together
           </h2>
           <p className="mt-4 max-w-xl font-sans text-sm text-cream-100/60">
-            Form akan membuka aplikasi email Anda dengan pesan siap kirim. Untuk chat cepat,
-            gunakan tombol WhatsApp.
+            Tombol kirim membuka Gmail / Mail di perangkat pengunjung. Pesan terkirim{' '}
+            <strong className="font-medium text-cream-100/80">atas nama akun email mereka</strong>,
+            bukan lewat layanan pihak ketiga. Untuk chat cepat, gunakan WhatsApp.
           </p>
         </Reveal>
 
@@ -154,7 +161,7 @@ export function Contact() {
                   whileTap={{ scale: 0.98 }}
                   className="relative overflow-hidden rounded-full bg-gradient-to-r from-red-800 to-red-600 py-3 text-sm font-semibold text-cream-50 shadow-glow transition disabled:opacity-70"
                 >
-                  {loading ? 'Membuka email...' : 'Kirim via Email'}
+                  {loading ? 'Membuka aplikasi email...' : 'Kirim dari Email Saya'}
                 </motion.button>
               </form>
             </GlassCard>
