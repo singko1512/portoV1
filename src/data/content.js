@@ -1,4 +1,6 @@
 import profilePerson from '../assets/profile-person.png'
+import qrInstagram from '../assets/qr-instagram.png'
+import qrLinkedin from '../assets/qr-linkedin.png'
 import cert1 from '../assets/certificates/cert-1.png'
 import cert2 from '../assets/certificates/cert-2.png'
 import cert3 from '../assets/certificates/cert-3.png'
@@ -139,10 +141,20 @@ export const certificates = [
   },
 ]
 
+export const contactInfo = {
+  email: 'dapahiben@gmail.com',
+  whatsappUrl: 'https://wa.me/6283875109156',
+  whatsappDisplay: '083875109156',
+  linkedinUrl: 'https://www.linkedin.com/in/m-fadli-ramadhan-0a37032a1/',
+  instagramUrl: 'https://www.instagram.com/daffahibann/',
+  qrInstagram,
+  qrLinkedin,
+}
+
 export const socialLinks = [
-  { label: 'Instagram', href: 'https://instagram.com', icon: 'instagram' },
-  { label: 'WhatsApp', href: 'https://wa.me/6281234567890', icon: 'whatsapp' },
-  { label: 'Email', href: 'mailto:dapahiben@gmail.com', icon: 'mail' },
+  { label: 'Instagram', href: contactInfo.instagramUrl, icon: 'instagram' },
+  { label: 'WhatsApp', href: contactInfo.whatsappUrl, icon: 'whatsapp' },
+  { label: 'Email', href: `mailto:${contactInfo.email}`, icon: 'mail' },
   { label: 'Github', href: 'https://github.com', icon: 'github' },
-  { label: 'Telegram', href: 'https://t.me', icon: 'telegram' },
+  { label: 'LinkedIn', href: contactInfo.linkedinUrl, icon: 'linkedin' },
 ]

@@ -1,20 +1,20 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { FaGithub, FaInstagram, FaTelegramPlane, Mail, MessageCircle, QrCode } from './icons'
+import { FaGithub, FaInstagram, FaLinkedinIn, Mail, MessageCircle } from './icons'
 import { GlassCard } from './GlassCard'
 import { ProfileImage } from './ProfileImage'
 import { Reveal } from './Reveal'
-import { socialLinks } from '../data/content'
+import { contactInfo, socialLinks } from '../data/content'
 
 const iconMap = {
   instagram: FaInstagram,
   whatsapp: MessageCircle,
   mail: Mail,
   github: FaGithub,
-  telegram: FaTelegramPlane,
+  linkedin: FaLinkedinIn,
 }
 
-function QrBlock({ label, href }) {
+function QrBlock({ label, href, image }) {
   return (
     <a
       href={href}
@@ -22,8 +22,8 @@ function QrBlock({ label, href }) {
       rel="noreferrer"
       className="group flex flex-col items-center rounded-2xl border border-red-800/40 bg-black/40 p-4 transition duration-300 hover:border-red-500/60 hover:shadow-glow"
     >
-      <div className="flex h-24 w-24 items-center justify-center rounded-xl border border-dashed border-red-700/50 bg-gradient-to-br from-red-950 to-burgundy-900 transition group-hover:scale-105">
-        <QrCode className="text-red-300/80" size={40} />
+      <div className="flex h-28 w-28 items-center justify-center overflow-hidden rounded-xl border border-red-700/50 bg-slate-950/80 p-1 transition group-hover:scale-105">
+        <img src={image} alt={`QR ${label}`} className="h-full w-full object-contain" />
       </div>
       <p className="mt-3 text-xs uppercase tracking-[0.2em] text-cream-100/70">{label}</p>
     </a>
@@ -34,14 +34,24 @@ export function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' })
   const [loading, setLoading] = useState(false)
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault()
     setLoading(true)
-    await new Promise((r) => setTimeout(r, 900))
-    console.log('Contact form:', formData)
-    alert('Terima kasih! Pesan Anda telah dikirim.')
-    setFormData({ name: '', email: '', message: '' })
-    setLoading(false)
+
+    const subject = encodeURIComponent(
+      formData.name ? `Portfolio Contact — ${formData.name}` : 'Portfolio Contact',
+    )
+    const body = encodeURIComponent(
+      `Nama: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`,
+    )
+    const mailto = `mailto:${contactInfo.email}?subject=${subject}&body=${body}`
+
+    window.location.href = mailto
+
+    setTimeout(() => {
+      setFormData({ name: '', email: '', message: '' })
+      setLoading(false)
+    }, 600)
   }
 
   return (
@@ -51,11 +61,15 @@ export function Contact() {
       <div className="relative mx-auto max-w-7xl">
         <Reveal>
           <p className="font-sans text-xs uppercase tracking-[0.35em] text-red-400/90">
-            Сотрудничество
+            Kolaborasi
           </p>
           <h2 className="mt-3 font-serif text-4xl font-bold text-cream-50 md:text-6xl">
             Let&apos;s Work Together
           </h2>
+          <p className="mt-4 max-w-xl font-sans text-sm text-cream-100/60">
+            Form akan membuka aplikasi email Anda dengan pesan siap kirim. Untuk chat cepat,
+            gunakan tombol WhatsApp.
+          </p>
         </Reveal>
 
         <div className="mt-12 grid gap-10 lg:grid-cols-2 lg:gap-16">
@@ -64,8 +78,16 @@ export function Contact() {
               <ProfileImage variant="circle" />
 
               <div className="grid w-full max-w-md grid-cols-2 gap-4">
-                <QrBlock label="Instagram" href="https://instagram.com" />
-                <QrBlock label="Telegram" href="https://t.me" />
+                <QrBlock
+                  label="Instagram"
+                  href={contactInfo.instagramUrl}
+                  image={contactInfo.qrInstagram}
+                />
+                <QrBlock
+                  label="LinkedIn"
+                  href={contactInfo.linkedinUrl}
+                  image={contactInfo.qrLinkedin}
+                />
               </div>
 
               <div className="flex w-full flex-wrap justify-center gap-3 lg:justify-start">
@@ -75,6 +97,8 @@ export function Contact() {
                     <motion.a
                       key={link.label}
                       href={link.href}
+                      target={link.icon === 'mail' ? undefined : '_blank'}
+                      rel={link.icon === 'mail' ? undefined : 'noreferrer'}
                       whileHover={{ scale: 1.08 }}
                       className="flex items-center gap-2 rounded-full border border-red-800/50 bg-red-950/40 px-4 py-2 text-sm text-cream-50 transition hover:border-red-500 hover:shadow-glow"
                     >
@@ -84,6 +108,15 @@ export function Contact() {
                   )
                 })}
               </div>
+
+              <a
+                href={contactInfo.whatsappUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="text-sm text-cream-100/50 transition hover:text-red-300"
+              >
+                WhatsApp: {contactInfo.whatsappDisplay}
+              </a>
             </div>
           </Reveal>
 
@@ -121,7 +154,7 @@ export function Contact() {
                   whileTap={{ scale: 0.98 }}
                   className="relative overflow-hidden rounded-full bg-gradient-to-r from-red-800 to-red-600 py-3 text-sm font-semibold text-cream-50 shadow-glow transition disabled:opacity-70"
                 >
-                  {loading ? 'Sending...' : 'Send Message'}
+                  {loading ? 'Membuka email...' : 'Kirim via Email'}
                 </motion.button>
               </form>
             </GlassCard>

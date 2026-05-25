@@ -1,5 +1,5 @@
 /* Brand icons: react-icons (Lucide tidak punya Github/Instagram) */
-export { FaGithub, FaInstagram, FaTelegramPlane, FaExternalLinkAlt } from 'react-icons/fa'
+export { FaGithub, FaInstagram, FaLinkedinIn, FaExternalLinkAlt } from 'react-icons/fa'
 
 /* UI icons: lucide-react */
 export {
