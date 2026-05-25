@@ -33,31 +33,42 @@ function QrBlock({ label, href, image }) {
 export function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' })
   const [loading, setLoading] = useState(false)
+  const [status, setStatus] = useState('idle')
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
     setLoading(true)
+    setStatus('idle')
 
-    const subject = encodeURIComponent(
-      formData.name ? `Portfolio — Pesan dari ${formData.name}` : 'Portfolio — Pesan baru',
-    )
-    const body = encodeURIComponent(
-      [
-        `Halo, saya ${formData.name || '(belum mengisi nama)'}.`,
-        `Email saya: ${formData.email}`,
-        '',
-        '--- Pesan ---',
-        formData.message,
-      ].join('\n'),
-    )
-    const mailto = `mailto:${contactInfo.email}?subject=${subject}&body=${body}`
+    try {
+      const response = await fetch(contactInfo.formspreeUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          _replyto: formData.email,
+          _subject: formData.name
+            ? `Portfolio — Pesan dari ${formData.name}`
+            : 'Portfolio — Pesan baru',
+        }),
+      })
 
-    window.location.href = mailto
+      if (!response.ok) {
+        throw new Error('Formspree request failed')
+      }
 
-    setTimeout(() => {
       setFormData({ name: '', email: '', message: '' })
+      setStatus('success')
+    } catch {
+      setStatus('error')
+    } finally {
       setLoading(false)
-    }, 600)
+    }
   }
 
   return (
@@ -73,9 +84,9 @@ export function Contact() {
             Let&apos;s Work Together
           </h2>
           <p className="mt-4 max-w-xl font-sans text-sm text-cream-100/60">
-            Tombol kirim membuka Gmail / Mail di perangkat pengunjung. Pesan terkirim{' '}
-            <strong className="font-medium text-cream-100/80">atas nama akun email mereka</strong>,
-            bukan lewat layanan pihak ketiga. Untuk chat cepat, gunakan WhatsApp.
+            Isi form di bawah — pesan langsung masuk ke email{' '}
+            <span className="text-cream-100/80">{contactInfo.email}</span>. Untuk chat cepat,
+            gunakan WhatsApp.
           </p>
         </Reveal>
 
@@ -132,6 +143,7 @@ export function Contact() {
               <form onSubmit={handleSubmit} className="grid gap-4">
                 <input
                   type="text"
+                  name="name"
                   placeholder="Nama"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -140,6 +152,7 @@ export function Contact() {
                 />
                 <input
                   type="email"
+                  name="email"
                   placeholder="Email"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -147,6 +160,7 @@ export function Contact() {
                   className="rounded-xl border border-red-900/50 bg-black/50 px-4 py-3 text-sm text-cream-50 placeholder:text-cream-100/40 focus:border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500/50"
                 />
                 <textarea
+                  name="message"
                   rows={5}
                   placeholder="Pesan"
                   value={formData.message}
@@ -154,6 +168,18 @@ export function Contact() {
                   required
                   className="rounded-xl border border-red-900/50 bg-black/50 px-4 py-3 text-sm text-cream-50 placeholder:text-cream-100/40 focus:border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500/50"
                 />
+
+                {status === 'success' && (
+                  <p className="rounded-xl border border-green-800/50 bg-green-950/30 px-4 py-3 text-sm text-green-200">
+                    Pesan terkirim! Terima kasih, saya akan membalas segera.
+                  </p>
+                )}
+                {status === 'error' && (
+                  <p className="rounded-xl border border-red-800/50 bg-red-950/50 px-4 py-3 text-sm text-red-200">
+                    Gagal mengirim. Coba lagi atau hubungi lewat WhatsApp.
+                  </p>
+                )}
+
                 <motion.button
                   type="submit"
                   disabled={loading}
@@ -161,7 +187,7 @@ export function Contact() {
                   whileTap={{ scale: 0.98 }}
                   className="relative overflow-hidden rounded-full bg-gradient-to-r from-red-800 to-red-600 py-3 text-sm font-semibold text-cream-50 shadow-glow transition disabled:opacity-70"
                 >
-                  {loading ? 'Membuka aplikasi email...' : 'Kirim dari Email Saya'}
+                  {loading ? 'Mengirim...' : 'Kirim Pesan'}
                 </motion.button>
               </form>
             </GlassCard>
