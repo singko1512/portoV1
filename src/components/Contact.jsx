@@ -33,12 +33,12 @@ function QrBlock({ label, href, image }) {
 export function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' })
   const [loading, setLoading] = useState(false)
-  const [status, setStatus] = useState('idle')
+  const [status, setStatus] = useState(null)
 
   const handleSubmit = async (event) => {
     event.preventDefault()
     setLoading(true)
-    setStatus('idle')
+    setStatus(null)
 
     try {
       const response = await fetch(contactInfo.formspreeUrl, {
@@ -52,18 +52,16 @@ export function Contact() {
           email: formData.email,
           message: formData.message,
           _replyto: formData.email,
-          _subject: formData.name
-            ? `Portfolio — Pesan dari ${formData.name}`
-            : 'Portfolio — Pesan baru',
+          _subject: `Portfolio — Pesan dari ${formData.name}`,
         }),
       })
 
       if (!response.ok) {
-        throw new Error('Formspree request failed')
+        throw new Error('Gagal mengirim pesan')
       }
 
-      setFormData({ name: '', email: '', message: '' })
       setStatus('success')
+      setFormData({ name: '', email: '', message: '' })
     } catch {
       setStatus('error')
     } finally {
@@ -85,8 +83,8 @@ export function Contact() {
           </h2>
           <p className="mt-4 max-w-xl font-sans text-sm text-cream-100/60">
             Isi form di bawah — pesan langsung masuk ke email{' '}
-            <span className="text-cream-100/80">{contactInfo.email}</span>. Untuk chat cepat,
-            gunakan WhatsApp.
+            <span className="text-cream-100/80">{contactInfo.email}</span>. Balas dari inbox
+            Gmail kamu; pengirim tercatat nama &amp; email mereka.
           </p>
         </Reveal>
 
@@ -170,12 +168,12 @@ export function Contact() {
                 />
 
                 {status === 'success' && (
-                  <p className="rounded-xl border border-green-800/50 bg-green-950/30 px-4 py-3 text-sm text-green-200">
-                    Pesan terkirim! Terima kasih, saya akan membalas segera.
+                  <p className="rounded-xl border border-green-800/50 bg-green-950/30 px-4 py-3 text-sm text-green-300">
+                    Pesan terkirim! Cek inbox {contactInfo.email}.
                   </p>
                 )}
                 {status === 'error' && (
-                  <p className="rounded-xl border border-red-800/50 bg-red-950/50 px-4 py-3 text-sm text-red-200">
+                  <p className="rounded-xl border border-red-800/50 bg-red-950/50 px-4 py-3 text-sm text-red-300">
                     Gagal mengirim. Coba lagi atau hubungi lewat WhatsApp.
                   </p>
                 )}
