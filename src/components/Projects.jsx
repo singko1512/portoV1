@@ -29,12 +29,12 @@ function ProjectCard({ project, index }) {
     >
       <div className="absolute inset-0 bg-gradient-to-br from-red-900/20 via-transparent to-black/50 opacity-0 transition duration-500 group-hover:opacity-100" />
       
-      <div className="relative mb-5 h-40 overflow-hidden rounded-2xl border border-red-800/30 bg-gradient-to-br from-red-950 via-burgundy-900 to-black transition duration-500 group-hover:scale-[1.02]">
+      <div className="relative mb-5 h-48 overflow-hidden rounded-2xl border border-red-800/30 bg-gradient-to-br from-red-950 via-burgundy-900 to-black transition duration-500 group-hover:scale-[1.02] flex items-center justify-center">
         {project.image ? (
           <img
             src={project.image}
             alt={project.title}
-            className="h-full w-full object-cover object-top transition duration-500 group-hover:scale-105"
+            className="h-full w-full object-contain transition duration-500 group-hover:scale-105"
           />
         ) : (
           <>

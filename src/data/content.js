@@ -35,7 +35,7 @@ export const projects = [
     title: 'Kalkulator Jejak Karbon',
     category: 'Web Application',
     description:
-      'Kalkulator Jejak Karbon adalah aplikasi web interaktif berbasis HTML, CSS, dan JavaScript yang berfungsi menghitung perkiraan emisi CO2 dari penggunaan alat elektronik dan konsumsi listrik rumah tangga secara real-time. Dengan antarmuka yang bersih dan responsif, proyek ini dirancang sebagai media edukasi digital untuk meningkatkan kesadaran masyarakat terhadap dampak pemanasan global dan pentingnya pelestarian lingkungan.',
+      'Aplikasi web interaktif berbasis HTML, CSS, dan JS untuk menghitung emisi karbon harian (elektronik & listrik) secara real-time sebagai media edukasi lingkungan.',
     stack: ['HTML', 'CSS', 'JavaScript'],
     demo: 'https://github.com/ikhsanalfaridzi/Karbon',
     github: 'https://github.com/ikhsanalfaridzi/Karbon',
@@ -45,7 +45,7 @@ export const projects = [
     title: 'First Portofolio',
     category: 'Personal Website',
     description:
-      'First Portofolio adalah situs web portofolio personal interaktif yang dibangun menggunakan HTML, CSS, dan JavaScript. Proyek ini dirancang sebagai representasi digital profesional untuk menampilkan profil, keahlian, serta rekam jejak proyek yang telah dikerjakan secara terstruktur. Dengan desain antarmuka yang bersih, responsif, dan modern, web ini fokus pada kemudahan navigasi agar calon klien atau perekrut dapat mengenal potensi diri penulis dengan cepat dan nyaman.',
+      'Situs portofolio personal pertama dengan desain bersih, responsif, dan modern untuk menampilkan profil serta karya PPLG saya secara terstruktur.',
     stack: ['HTML', 'CSS', 'JavaScript'],
     demo: 'https://github.com/singko1512/personal.web',
     github: 'https://github.com/singko1512/personal.web',
@@ -55,7 +55,7 @@ export const projects = [
     title: 'Project 3 (Coming Soon)',
     category: 'Future Project',
     description:
-      'Proyek berikutnya sedang dalam tahap pengembangan dan akan segera dipublikasikan di GitHub.',
+      'Proyek berikutnya sedang dalam tahap pengembangan dan akan segera dipublikasikan.',
     stack: ['React', 'Tailwind', 'JavaScript'],
     demo: '#',
     github: '#',
