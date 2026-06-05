@@ -5,6 +5,45 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Daffa Hibban Gunawan | Portfolio</title>
+    <script>
+      // Disable right-click (context menu)
+      document.addEventListener('contextmenu', event => event.preventDefault());
+
+      // Disable keyboard shortcuts for inspecting
+      document.addEventListener('keydown', event => {
+        const key = event.key ? event.key.toUpperCase() : '';
+        
+        // F12
+        if (key === 'F12') {
+          event.preventDefault();
+          return false;
+        }
+        
+        // Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C, Ctrl+Shift+K
+        if (event.ctrlKey && event.shiftKey && ['I', 'J', 'C', 'K'].includes(key)) {
+          event.preventDefault();
+          return false;
+        }
+        
+        // Ctrl+U (View Source)
+        if (event.ctrlKey && key === 'U') {
+          event.preventDefault();
+          return false;
+        }
+        
+        // Cmd+Alt+I, Cmd+Alt+J, Cmd+Alt+C, Cmd+Alt+K (Mac dev tools)
+        if (event.metaKey && event.altKey && ['I', 'J', 'C', 'K'].includes(key)) {
+          event.preventDefault();
+          return false;
+        }
+        
+        // Cmd+Alt+U or Cmd+U (Mac view source)
+        if (event.metaKey && (event.altKey || key === 'U') && key === 'U') {
+          event.preventDefault();
+          return false;
+        }
+      });
+    </script>
   </head>
   <body style="margin:0;background:#0d0000;color:#fdf5e6">
     <div id="root"></div>

@@ -10,6 +10,8 @@ import cert6 from '../assets/certificates/cert-6.png'
 import cert7 from '../assets/certificates/cert-7.png'
 import cert8 from '../assets/certificates/cert-8.png'
 import cert9 from '../assets/certificates/cert-9.png'
+import carbonCalculatorImg from '../assets/carbon-calculator.png'
+import firstPortfolioImg from '../assets/first-portfolio.png'
 
 export const profileImage = profilePerson
 
@@ -30,31 +32,34 @@ export const stats = [
 
 export const projects = [
   {
-    title: 'EduVerse Landing Platform',
-    category: 'Web Design',
+    title: 'Kalkulator Jejak Karbon',
+    category: 'Web Application',
     description:
-      'Landing page education platform dengan fokus conversion, hierarki visual yang kuat, dan UX yang mudah dipahami.',
-    stack: ['React', 'Tailwind', 'Figma'],
-    demo: '#',
-    github: '#',
+      'Kalkulator Jejak Karbon adalah aplikasi web interaktif berbasis HTML, CSS, dan JavaScript yang berfungsi menghitung perkiraan emisi CO2 dari penggunaan alat elektronik dan konsumsi listrik rumah tangga secara real-time. Dengan antarmuka yang bersih dan responsif, proyek ini dirancang sebagai media edukasi digital untuk meningkatkan kesadaran masyarakat terhadap dampak pemanasan global dan pentingnya pelestarian lingkungan.',
+    stack: ['HTML', 'CSS', 'JavaScript'],
+    demo: 'https://github.com/ikhsanalfaridzi/Karbon',
+    github: 'https://github.com/ikhsanalfaridzi/Karbon',
+    image: carbonCalculatorImg,
   },
   {
-    title: 'Finance Tracker Dashboard',
-    category: 'Frontend Development',
+    title: 'First Portofolio',
+    category: 'Personal Website',
     description:
-      'Dashboard interaktif untuk monitoring cashflow dengan chart dinamis, filter data, dan layout responsif.',
-    stack: ['React', 'Chart.js', 'CSS'],
-    demo: '#',
-    github: '#',
+      'First Portofolio adalah situs web portofolio personal interaktif yang dibangun menggunakan HTML, CSS, dan JavaScript. Proyek ini dirancang sebagai representasi digital profesional untuk menampilkan profil, keahlian, serta rekam jejak proyek yang telah dikerjakan secara terstruktur. Dengan desain antarmuka yang bersih, responsif, dan modern, web ini fokus pada kemudahan navigasi agar calon klien atau perekrut dapat mengenal potensi diri penulis dengan cepat dan nyaman.',
+    stack: ['HTML', 'CSS', 'JavaScript'],
+    demo: 'https://github.com/singko1512/personal.web',
+    github: 'https://github.com/singko1512/personal.web',
+    image: firstPortfolioImg,
   },
   {
-    title: 'Luma Commerce Redesign',
-    category: 'UI/UX Case Study',
+    title: 'Project 3 (Coming Soon)',
+    category: 'Future Project',
     description:
-      'Redesign checkout flow e-commerce agar lebih cepat, sederhana, dan meningkatkan conversion rate.',
-    stack: ['Figma', 'UI/UX', 'Prototyping'],
+      'Proyek berikutnya sedang dalam tahap pengembangan dan akan segera dipublikasikan di GitHub.',
+    stack: ['React', 'Tailwind', 'JavaScript'],
     demo: '#',
     github: '#',
+    image: null,
   },
 ]
 
