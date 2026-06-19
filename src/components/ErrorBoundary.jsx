@@ -17,7 +17,7 @@ export class ErrorBoundary extends Component {
           style={{
             minHeight: '100vh',
             padding: '2rem',
-            background: '#0d0000',
+            background: '#080808',
             color: '#fdf5e6',
             fontFamily: 'system-ui, sans-serif',
           }}
@@ -28,7 +28,7 @@ export class ErrorBoundary extends Component {
           </p>
           <pre
             style={{
-              background: '#1a0000',
+              background: '#121212',
               padding: '1rem',
               borderRadius: '8px',
               overflow: 'auto',

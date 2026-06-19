@@ -31,11 +31,11 @@ function Portfolio() {
         <Contact />
       </main>
 
-      <footer className="border-t border-red-900/30 px-5 py-10 text-center md:px-8">
+      <footer className="border-t border-zinc-800/40 px-5 py-10 text-center md:px-8">
         <p className="font-sans text-sm text-cream-100/50">
           © 2026 Daffa Hibban Gunawan. All rights reserved.
         </p>
-        <p className="mt-2 font-display text-xs uppercase tracking-[0.3em] text-red-400/60">
+        <p className="mt-2 font-display text-xs uppercase tracking-[0.3em] text-zinc-500/60">
           Designed with passion
         </p>
       </footer>

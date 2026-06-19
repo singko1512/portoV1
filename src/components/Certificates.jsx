@@ -9,7 +9,7 @@ function CertificateCard({ item, onOpen }) {
     <motion.article
       layout
       whileHover={{ y: -6 }}
-      className="group cursor-pointer overflow-hidden rounded-2xl border border-red-900/35 bg-burgundy-900/35 shadow-cinematic backdrop-blur-xl transition duration-300 hover:border-red-500/50 hover:shadow-glow"
+      className="group cursor-pointer overflow-hidden rounded-2xl border border-zinc-800/40 bg-zinc-950/25 shadow-cinematic backdrop-blur-xl transition duration-300 hover:border-white/50 hover:shadow-glow"
       onClick={() => onOpen(item)}
     >
       <div className="relative overflow-hidden bg-black/50 p-3">
@@ -24,7 +24,7 @@ function CertificateCard({ item, onOpen }) {
         </div>
       </div>
       <div className="p-5">
-        <span className="rounded-full border border-red-700/50 bg-red-950/50 px-3 py-1 text-[10px] uppercase tracking-wider text-red-200">
+        <span className="rounded-full border border-zinc-800 bg-zinc-900/50 px-3 py-1 text-[10px] uppercase tracking-wider text-zinc-350">
           {item.type}
         </span>
         <h3 className="mt-3 font-serif text-lg font-bold text-cream-50">{item.name}</h3>
@@ -42,11 +42,11 @@ export function Certificates() {
 
   return (
     <section id="certificates" className="relative snap-start px-5 py-24 md:px-8 md:py-32">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_left,rgba(127,29,29,0.15),transparent_50%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_left,rgba(255,255,255,0.03),transparent_50%)]" />
 
       <div className="relative mx-auto max-w-7xl">
         <Reveal>
-          <p className="font-sans text-xs uppercase tracking-[0.35em] text-red-400/90">Achievements</p>
+          <p className="font-sans text-xs uppercase tracking-[0.35em] text-zinc-400">Achievements</p>
           <h2 className="mt-3 font-serif text-4xl font-bold text-cream-50 md:text-5xl">Certificates</h2>
           <p className="mt-4 max-w-3xl font-sans text-cream-100/70">
             Koleksi sertifikat resmi yang menunjukkan progres belajar dan kompetensi di bidang
@@ -73,7 +73,7 @@ export function Certificates() {
             onClick={() => setSelected(null)}
           >
             <motion.div
-              className="relative max-h-[90vh] w-full max-w-4xl overflow-hidden rounded-2xl border border-red-800/50 bg-burgundy-950 p-4 shadow-glow"
+              className="relative max-h-[90vh] w-full max-w-4xl overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-950 p-4 shadow-glow"
               initial={{ scale: 0.92, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.92, opacity: 0 }}
@@ -83,7 +83,7 @@ export function Certificates() {
               <button
                 type="button"
                 onClick={() => setSelected(null)}
-                className="absolute right-4 top-4 z-10 rounded-full border border-red-700/50 bg-black/60 p-2 text-cream-50"
+                className="absolute right-4 top-4 z-10 rounded-full border border-zinc-700 bg-black/60 p-2 text-cream-50"
                 aria-label="Close preview"
               >
                 <X size={18} />

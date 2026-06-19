@@ -1,8 +1,12 @@
+import React from 'react'
 import { motion } from 'framer-motion'
-import { ChevronDown } from './icons'
-import { ProfileImage } from './ProfileImage'
+import { ChevronDown, FaInstagram, FaGithub, FaLinkedinIn } from './icons'
 import { Reveal } from './Reveal'
 import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion'
+import { contactInfo } from '../data/content'
+import UnicornScene from 'unicornstudio-react'
+import { Play } from 'lucide-react'
+import carbonCalculatorImg from '../assets/carbon-calculator.png'
 
 export function Hero() {
   const reduced = usePrefersReducedMotion()
@@ -10,74 +14,156 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative flex min-h-screen snap-start flex-col justify-center overflow-hidden px-5 pb-16 pt-28 md:px-8"
+      className="relative flex min-h-screen snap-start flex-col justify-center overflow-hidden px-5 pb-16 pt-28 md:px-8 bg-noir-950"
     >
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(127,29,29,0.35),transparent_50%)]" />
-      <div className="pointer-events-none absolute -left-32 top-20 h-96 w-96 rounded-full bg-red-900/30 blur-[100px]" />
-      <div className="pointer-events-none absolute -right-20 bottom-10 h-80 w-80 rounded-full bg-red-700/20 blur-[90px]" />
+      {/* Centered WebGL photo via UnicornScene as the background */}
+      <div className="absolute inset-0 z-0 flex items-center justify-center overflow-hidden">
+        <UnicornScene
+          projectId="ceD2mQXyBHE8FGVKjqOo"
+          width="100%"
+          height="100%"
+          scale={0.75}
+          dpi={1.5}
+          sdkUrl="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v2.2.5/dist/unicornStudio.umd.js"
+          className="absolute inset-0 w-full h-full"
+        />
+        {/* Soft shadow overlay to ensure text readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-black/80 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-transparent to-transparent opacity-95 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#080808] via-transparent to-transparent opacity-80 pointer-events-none" />
+      </div>
 
-      <p className="pointer-events-none absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 font-display text-[12vw] font-bold uppercase leading-none tracking-tighter text-red-950/80 md:block">
-        Portfolio
-      </p>
+      {/* Hero Content Grid (3-column layout) */}
+      <div className="relative mx-auto grid w-full max-w-7xl items-center gap-8 grid-cols-1 lg:grid-cols-12 z-10">
 
-      <div className="relative mx-auto grid w-full max-w-7xl items-center gap-12 lg:grid-cols-2 lg:gap-8">
-        <div className="order-2 text-center lg:order-1 lg:text-left">
-          <Reveal>
-            <p className="mb-4 font-sans text-xs uppercase tracking-[0.35em] text-red-300/90 md:text-sm">
-              SMK Wikrama • PPLG / RPL
-            </p>
-          </Reveal>
+        {/* Left Column: Title & Intro */}
+        <div className="lg:col-span-5 text-center lg:text-left flex flex-col justify-center space-y-6">
+          <div>
+            <Reveal>
+              <p className="mb-2 font-sans text-xs uppercase tracking-[0.4em] text-zinc-400 font-bold md:text-sm">
+                MARVEL
+              </p>
+            </Reveal>
 
-          <motion.h1
-            className="font-serif text-4xl font-bold leading-[1.05] text-cream-50 sm:text-5xl md:text-6xl lg:text-7xl"
-            initial={reduced ? undefined : { opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-          >
-            Daffa Hibban
-            <span className="block bg-gradient-to-r from-cream-50 via-red-200 to-red-500 bg-clip-text font-display text-5xl uppercase tracking-wide text-transparent sm:text-6xl md:text-7xl lg:text-8xl">
-              Gunawan
-            </span>
-          </motion.h1>
+            <motion.h1
+              className="font-display text-5xl font-black leading-[0.95] text-cream-50 sm:text-6xl md:text-7xl uppercase tracking-tighter"
+              initial={reduced ? undefined : { opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+            >
+              SPIDER-MAN
+              <span className="block font-serif text-3xl font-semibold tracking-normal text-white/80 capitalize mt-2 italic">
+                Daffa Hibban
+              </span>
+            </motion.h1>
+          </div>
 
           <Reveal delay={0.15}>
-            <p className="mx-auto mt-6 max-w-xl font-sans text-base leading-relaxed text-cream-100/75 md:text-lg lg:mx-0">
-              SMK Wikrama Student • PPLG / RPL • Frontend Developer &amp; UI Designer
+            <p className="mx-auto max-w-md font-sans text-sm leading-relaxed text-cream-100/75 lg:mx-0">
+              Siswa SMK Wikrama Bogor jurusan Pengembangan Perangkat Lunak &amp; Gim. Memiliki keahlian di bidang frontend development, merancang antarmuka Web &amp; Game yang modern dan interaktif.
             </p>
           </Reveal>
 
           <Reveal delay={0.25}>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-4 lg:justify-start">
+            <div className="flex flex-wrap items-center justify-center gap-4 lg:justify-start">
               <a
                 href="#projects"
-                className="rounded-full bg-gradient-to-r from-red-800 to-red-600 px-7 py-3 text-sm font-semibold text-cream-50 shadow-glow transition hover:scale-105 hover:from-red-700 hover:to-red-500"
+                className="rounded-full bg-cream-50 hover:bg-white px-8 py-3.5 text-xs font-bold uppercase tracking-wider text-zinc-950 shadow-glow transition hover:scale-105"
               >
-                View Projects
+                Lihat Karya
               </a>
               <a
                 href="#contact"
-                className="rounded-full border border-red-500/40 bg-red-950/30 px-7 py-3 text-sm font-semibold text-cream-50 backdrop-blur-md transition hover:border-red-400 hover:bg-red-900/40"
+                className="rounded-full border border-zinc-750 bg-zinc-900/30 px-8 py-3.5 text-xs font-bold uppercase tracking-wider text-cream-50 backdrop-blur-md transition hover:border-white hover:bg-zinc-800/40"
               >
-                Contact Me
+                Hubungi Saya
+              </a>
+            </div>
+          </Reveal>
+
+          {/* Social Links */}
+          <Reveal delay={0.35}>
+            <div className="flex items-center justify-center lg:justify-start gap-4 pt-4 text-cream-100/50">
+              <a href="https://github.com" target="_blank" rel="noreferrer" className="hover:text-white transition">
+                <FaGithub size={18} />
+              </a>
+              <a href={contactInfo.instagramUrl} target="_blank" rel="noreferrer" className="hover:text-white transition">
+                <FaInstagram size={18} />
+              </a>
+              <a href={contactInfo.linkedinUrl} target="_blank" rel="noreferrer" className="hover:text-white transition">
+                <FaLinkedinIn size={18} />
               </a>
             </div>
           </Reveal>
         </div>
 
-        <div className="order-1 flex justify-center lg:order-2">
-          <Reveal delay={0.2} className="w-full max-w-lg">
-            <ProfileImage variant="hero" />
-          </Reveal>
+        {/* Center Column: Transparent space for hover interaction with the centered person */}
+        <div className="hidden lg:block lg:col-span-4 h-[50vh] pointer-events-none" />
+
+        {/* Right Column: Developer Metrics & Featured Showcase */}
+        <div className="hidden lg:col-span-3 lg:flex flex-col justify-center space-y-8 pl-6">
+
+          {/* Metrics Widget */}
+          <div className="space-y-4">
+            <p className="font-mono text-xs uppercase tracking-[0.2em] text-cream-100/40 font-bold">
+              Developer Metrics
+            </p>
+            <div className="space-y-3">
+              <div className="flex items-center gap-3 bg-black/40 border border-zinc-800/40 rounded-xl px-4 py-3 backdrop-blur-md">
+                <span className="font-display text-2xl font-bold text-white text-glow-white">9.9</span>
+                <div className="font-mono text-[9px] leading-tight">
+                  <p className="font-bold text-cream-50">LIGHTHOUSE</p>
+                  <p className="text-cream-100/40">Performance Score</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-3 bg-black/40 border border-zinc-800/40 rounded-xl px-4 py-3 backdrop-blur-md">
+                <span className="font-display text-2xl font-bold text-cream-50">9.8</span>
+                <div className="font-mono text-[9px] leading-tight">
+                  <p className="font-bold text-cream-50">CLEAN_CODE</p>
+                  <p className="text-cream-100/40">Maintainability Index</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Project Card Showcase */}
+          <div className="space-y-3">
+            <p className="font-mono text-xs uppercase tracking-[0.2em] text-cream-100/40 font-bold">
+              Featured Showcase
+            </p>
+            <a
+              href="#projects"
+              className="group cursor-pointer block relative overflow-hidden rounded-xl border border-zinc-800/40 bg-black/40 p-2.5 backdrop-blur-md transition-all duration-300 hover:border-white/50"
+            >
+              <div className="relative h-28 overflow-hidden rounded-lg bg-noir-950 flex items-center justify-center">
+                <img
+                  src={carbonCalculatorImg}
+                  alt="Kalkulator Jejak Karbon"
+                  className="h-full w-full object-cover filter grayscale contrast-125 group-hover:scale-105 transition duration-500"
+                />
+                <div className="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/20 transition-all">
+                  <div className="h-10 w-10 rounded-full bg-white/10 flex items-center justify-center backdrop-blur-sm group-hover:scale-110 transition duration-300 border border-white/20">
+                    <Play size={14} className="text-white fill-current translate-x-0.5" />
+                  </div>
+                </div>
+              </div>
+              <p className="mt-2 font-mono text-[10px] uppercase tracking-wider text-cream-50 font-bold leading-none">
+                Kalkulator Jejak Karbon
+              </p>
+            </a>
+          </div>
         </div>
+
       </div>
 
+      {/* Scroll Indicator */}
       <motion.a
         href="#about"
-        className="absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-cream-100/50"
+        className="absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-cream-100/50 hover:text-white transition"
         animate={reduced ? undefined : { y: [0, 8, 0] }}
         transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
       >
-        <span className="text-[10px] uppercase tracking-[0.3em]">Scroll</span>
+        <span className="text-[10px] uppercase tracking-[0.3em] font-mono">Scroll</span>
         <ChevronDown size={20} />
       </motion.a>
     </section>

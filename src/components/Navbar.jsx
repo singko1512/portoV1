@@ -17,7 +17,7 @@ export function Navbar({ activeSection }) {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
         scrolled
-          ? 'border-b border-red-900/40 bg-black/50 shadow-cinematic backdrop-blur-xl'
+          ? 'border-b border-zinc-800/40 bg-black/50 shadow-cinematic backdrop-blur-xl'
           : 'bg-transparent'
       }`}
     >
@@ -31,7 +31,7 @@ export function Navbar({ activeSection }) {
 
         <button
           type="button"
-          className="rounded-xl border border-red-800/50 p-2 text-cream-50 md:hidden"
+          className="rounded-xl border border-zinc-700/50 p-2 text-cream-50 md:hidden"
           onClick={() => setOpen((v) => !v)}
           aria-label="Toggle menu"
         >
@@ -53,14 +53,14 @@ export function Navbar({ activeSection }) {
               {activeSection === item.id && (
                 <motion.span
                   layoutId="nav-active"
-                  className="absolute -bottom-2 left-0 h-px w-full bg-gradient-to-r from-red-500 to-cream-100"
+                  className="absolute -bottom-2 left-0 h-px w-full bg-gradient-to-r from-white to-zinc-400"
                 />
               )}
             </a>
           ))}
           <a
             href="#contact"
-            className="rounded-full border border-red-500/50 bg-red-900/40 px-5 py-2 text-sm font-semibold text-cream-50 shadow-glow transition hover:scale-105 hover:bg-red-800/60"
+            className="rounded-full border border-zinc-700 bg-zinc-900/40 px-5 py-2 text-sm font-semibold text-cream-50 shadow-glow transition hover:scale-105 hover:bg-zinc-800/60 hover:border-white"
           >
             Let&apos;s Talk
           </a>
@@ -73,7 +73,7 @@ export function Navbar({ activeSection }) {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="overflow-hidden border-t border-red-900/40 bg-black/80 backdrop-blur-xl md:hidden"
+            className="overflow-hidden border-t border-zinc-850 bg-black/80 backdrop-blur-xl md:hidden"
           >
             <div className="flex flex-col gap-4 px-5 py-5">
               {navItems.map((item) => (
@@ -91,7 +91,7 @@ export function Navbar({ activeSection }) {
               <a
                 href="#contact"
                 onClick={() => setOpen(false)}
-                className="rounded-full border border-red-500/50 bg-red-900/50 px-5 py-2 text-center text-sm font-semibold text-cream-50"
+                className="rounded-full border border-zinc-700 bg-zinc-900 px-5 py-2 text-center text-sm font-semibold text-cream-50 hover:border-white transition"
               >
                 Let&apos;s Talk
               </a>

@@ -20,9 +20,9 @@ function QrBlock({ label, href, image }) {
       href={href}
       target="_blank"
       rel="noreferrer"
-      className="group flex flex-col items-center rounded-2xl border border-red-800/40 bg-black/40 p-4 transition duration-300 hover:border-red-500/60 hover:shadow-glow"
+      className="group flex flex-col items-center rounded-2xl border border-zinc-805 bg-black/40 p-4 transition duration-300 hover:border-white/50 hover:shadow-glow"
     >
-      <div className="flex h-28 w-28 items-center justify-center overflow-hidden rounded-xl border border-red-700/50 bg-slate-950/80 p-1 transition group-hover:scale-105">
+      <div className="flex h-28 w-28 items-center justify-center overflow-hidden rounded-xl border border-zinc-800 bg-slate-950/80 p-1 transition group-hover:scale-105">
         <img src={image} alt={`QR ${label}`} className="h-full w-full object-contain" />
       </div>
       <p className="mt-3 text-xs uppercase tracking-[0.2em] text-cream-100/70">{label}</p>
@@ -71,11 +71,11 @@ export function Contact() {
 
   return (
     <section id="contact" className="relative snap-start px-5 py-24 md:px-8 md:py-32">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(153,27,27,0.25),transparent_60%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(255,255,255,0.04),transparent_60%)]" />
 
       <div className="relative mx-auto max-w-7xl">
         <Reveal>
-          <p className="font-sans text-xs uppercase tracking-[0.35em] text-red-400/90">
+          <p className="font-sans text-xs uppercase tracking-[0.35em] text-zinc-400">
             Kolaborasi
           </p>
           <h2 className="mt-3 font-serif text-4xl font-bold text-cream-50 md:text-6xl">
@@ -116,7 +116,7 @@ export function Contact() {
                       target={link.icon === 'mail' ? undefined : '_blank'}
                       rel={link.icon === 'mail' ? undefined : 'noreferrer'}
                       whileHover={{ scale: 1.08 }}
-                      className="flex items-center gap-2 rounded-full border border-red-800/50 bg-red-950/40 px-4 py-2 text-sm text-cream-50 transition hover:border-red-500 hover:shadow-glow"
+                      className="flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900/40 px-4 py-2 text-sm text-cream-50 transition hover:border-white hover:shadow-glow"
                     >
                       <Icon size={16} />
                       {link.label}
@@ -129,7 +129,7 @@ export function Contact() {
                 href={contactInfo.whatsappUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="text-sm text-cream-100/50 transition hover:text-red-300"
+                className="text-sm text-cream-100/50 transition hover:text-white"
               >
                 WhatsApp: {contactInfo.whatsappDisplay}
               </a>
@@ -146,7 +146,7 @@ export function Contact() {
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   required
-                  className="rounded-xl border border-red-900/50 bg-black/50 px-4 py-3 text-sm text-cream-50 placeholder:text-cream-100/40 focus:border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500/50"
+                  className="rounded-xl border border-zinc-800 bg-black/50 px-4 py-3 text-sm text-cream-50 placeholder:text-cream-100/40 focus:border-white focus:outline-none focus:ring-1 focus:ring-white/20"
                 />
                 <input
                   type="email"
@@ -155,7 +155,7 @@ export function Contact() {
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   required
-                  className="rounded-xl border border-red-900/50 bg-black/50 px-4 py-3 text-sm text-cream-50 placeholder:text-cream-100/40 focus:border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500/50"
+                  className="rounded-xl border border-zinc-800 bg-black/50 px-4 py-3 text-sm text-cream-50 placeholder:text-cream-100/40 focus:border-white focus:outline-none focus:ring-1 focus:ring-white/20"
                 />
                 <textarea
                   name="message"
@@ -164,7 +164,7 @@ export function Contact() {
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   required
-                  className="rounded-xl border border-red-900/50 bg-black/50 px-4 py-3 text-sm text-cream-50 placeholder:text-cream-100/40 focus:border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500/50"
+                  className="rounded-xl border border-zinc-800 bg-black/50 px-4 py-3 text-sm text-cream-50 placeholder:text-cream-100/40 focus:border-white focus:outline-none focus:ring-1 focus:ring-white/20"
                 />
 
                 {status === 'success' && (
@@ -173,7 +173,7 @@ export function Contact() {
                   </p>
                 )}
                 {status === 'error' && (
-                  <p className="rounded-xl border border-red-800/50 bg-red-950/50 px-4 py-3 text-sm text-red-300">
+                  <p className="rounded-xl border border-zinc-800 bg-zinc-950/50 px-4 py-3 text-sm text-zinc-300">
                     Gagal mengirim. Coba lagi atau hubungi lewat WhatsApp.
                   </p>
                 )}
@@ -183,7 +183,7 @@ export function Contact() {
                   disabled={loading}
                   whileHover={{ scale: loading ? 1 : 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="relative overflow-hidden rounded-full bg-gradient-to-r from-red-800 to-red-600 py-3 text-sm font-semibold text-cream-50 shadow-glow transition disabled:opacity-70"
+                  className="relative overflow-hidden rounded-full bg-cream-50 hover:bg-white py-3 text-sm font-bold text-zinc-950 shadow-glow transition disabled:opacity-70"
                 >
                   {loading ? 'Mengirim...' : 'Kirim Pesan'}
                 </motion.button>
