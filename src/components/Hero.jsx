@@ -14,30 +14,13 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative flex min-h-screen snap-start flex-col justify-center overflow-hidden px-5 pb-16 pt-28 md:px-8 bg-noir-950"
+      className="relative flex min-h-screen snap-start flex-col justify-center overflow-hidden px-5 pb-16 pt-28 md:px-8 bg-[#080808]"
     >
-      {/* Centered WebGL photo via UnicornScene as the background */}
-      <div className="absolute inset-0 z-0 flex items-center justify-center overflow-hidden">
-        <UnicornScene
-          projectId="ceD2mQXyBHE8FGVKjqOo"
-          width="100%"
-          height="100%"
-          scale={0.75}
-          dpi={1.5}
-          sdkUrl="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v2.2.5/dist/unicornStudio.umd.js"
-          className="absolute inset-0 w-full h-full"
-        />
-        {/* Soft shadow overlay to ensure text readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-black/80 pointer-events-none" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-transparent to-transparent opacity-95 pointer-events-none" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#080808] via-transparent to-transparent opacity-80 pointer-events-none" />
-      </div>
-
       {/* Hero Content Grid (3-column layout) */}
       <div className="relative mx-auto grid w-full max-w-7xl items-center gap-8 grid-cols-1 lg:grid-cols-12 z-10">
 
         {/* Left Column: Title & Intro */}
-        <div className="lg:col-span-5 text-center lg:text-left flex flex-col justify-center space-y-6">
+        <div className="col-span-12 lg:col-span-4 text-center lg:text-left flex flex-col justify-center space-y-6">
           <div>
             <Reveal>
               <p className="mb-2 font-sans text-xs uppercase tracking-[0.4em] text-zinc-400 font-bold md:text-sm">
@@ -97,28 +80,46 @@ export function Hero() {
           </Reveal>
         </div>
 
-        {/* Center Column: Transparent space for hover interaction with the centered person */}
-        <div className="hidden lg:block lg:col-span-4 h-[50vh] pointer-events-none" />
+        {/* Center Column: Portrait Container */}
+        <div className="col-span-12 lg:col-span-4 min-h-[350px] sm:min-h-[450px] lg:h-[70vh] relative flex items-center justify-center overflow-visible z-0">
+          <div
+            className="absolute w-[90vw] max-w-[400px] sm:max-w-[500px] lg:w-[900px] lg:max-w-none aspect-[16/10] flex items-center justify-center"
+            style={{
+              WebkitMaskImage: 'radial-gradient(circle at 50% 45%, rgba(0, 0, 0, 1) 35%, rgba(0, 0, 0, 0) 70%)',
+              maskImage: 'radial-gradient(circle at 50% 45%, rgba(0, 0, 0, 1) 35%, rgba(0, 0, 0, 0) 70%)',
+            }}
+          >
+            <UnicornScene
+              projectId="ceD2mQXyBHE8FGVKjqOo"
+              width="1440px"
+              height="900px"
+              scale={1}
+              dpi={1.5}
+              sdkUrl="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v2.2.5/dist/unicornStudio.umd.js"
+              className="absolute inset-0 w-full h-full"
+            />
+          </div>
+        </div>
 
         {/* Right Column: Developer Metrics & Featured Showcase */}
-        <div className="hidden lg:col-span-3 lg:flex flex-col justify-center space-y-8 pl-6">
+        <div className="col-span-12 lg:col-span-4 flex flex-col justify-center space-y-8 lg:pl-6 text-center lg:text-left mt-8 lg:mt-0">
 
           {/* Metrics Widget */}
-          <div className="space-y-4">
+          <div className="space-y-4 max-w-sm mx-auto lg:mx-0 w-full">
             <p className="font-mono text-xs uppercase tracking-[0.2em] text-cream-100/40 font-bold">
               Developer Metrics
             </p>
             <div className="space-y-3">
-              <div className="flex items-center gap-3 bg-black/40 border border-zinc-800/40 rounded-xl px-4 py-3 backdrop-blur-md">
+              <div className="flex items-center justify-center lg:justify-start gap-3 bg-black/40 border border-zinc-800/40 rounded-xl px-4 py-3 backdrop-blur-md">
                 <span className="font-display text-2xl font-bold text-white text-glow-white">9.9</span>
-                <div className="font-mono text-[9px] leading-tight">
+                <div className="font-mono text-[9px] leading-tight text-left">
                   <p className="font-bold text-cream-50">LIGHTHOUSE</p>
                   <p className="text-cream-100/40">Performance Score</p>
                 </div>
               </div>
-              <div className="flex items-center gap-3 bg-black/40 border border-zinc-800/40 rounded-xl px-4 py-3 backdrop-blur-md">
+              <div className="flex items-center justify-center lg:justify-start gap-3 bg-black/40 border border-zinc-800/40 rounded-xl px-4 py-3 backdrop-blur-md">
                 <span className="font-display text-2xl font-bold text-cream-50">9.8</span>
-                <div className="font-mono text-[9px] leading-tight">
+                <div className="font-mono text-[9px] leading-tight text-left">
                   <p className="font-bold text-cream-50">CLEAN_CODE</p>
                   <p className="text-cream-100/40">Maintainability Index</p>
                 </div>
@@ -127,7 +128,7 @@ export function Hero() {
           </div>
 
           {/* Project Card Showcase */}
-          <div className="space-y-3">
+          <div className="space-y-3 max-w-sm mx-auto lg:mx-0 w-full">
             <p className="font-mono text-xs uppercase tracking-[0.2em] text-cream-100/40 font-bold">
               Featured Showcase
             </p>
@@ -135,7 +136,7 @@ export function Hero() {
               href="#projects"
               className="group cursor-pointer block relative overflow-hidden rounded-xl border border-zinc-800/40 bg-black/40 p-2.5 backdrop-blur-md transition-all duration-300 hover:border-white/50"
             >
-              <div className="relative h-28 overflow-hidden rounded-lg bg-noir-950 flex items-center justify-center">
+              <div className="relative h-28 overflow-hidden rounded-lg bg-[#080808] flex items-center justify-center">
                 <img
                   src={carbonCalculatorImg}
                   alt="Kalkulator Jejak Karbon"
@@ -147,7 +148,7 @@ export function Hero() {
                   </div>
                 </div>
               </div>
-              <p className="mt-2 font-mono text-[10px] uppercase tracking-wider text-cream-50 font-bold leading-none">
+              <p className="mt-2 font-mono text-[10px] uppercase tracking-wider text-cream-50 font-bold leading-none text-left pl-1">
                 Kalkulator Jejak Karbon
               </p>
             </a>
@@ -159,7 +160,7 @@ export function Hero() {
       {/* Scroll Indicator */}
       <motion.a
         href="#about"
-        className="absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-cream-100/50 hover:text-white transition"
+        className="absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-cream-100/50 hover:text-white transition z-10"
         animate={reduced ? undefined : { y: [0, 8, 0] }}
         transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
       >
